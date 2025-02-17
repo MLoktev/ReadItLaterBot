@@ -5,9 +5,9 @@ import (
 	"database/sql"
 	"fmt"
 
-	// _ "github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
 
-	_ "modernc.org/sqlite"
+	// _ "modernc.org/sqlite"
 
 	"read-it-later-bot/storage"
 )
@@ -18,7 +18,7 @@ type Storage struct {
 
 // New creates new SQLite storage.
 func New(path string) (*Storage, error) {
-	db, err := sql.Open("sqlite", path)
+	db, err := sql.Open("sqlite3", path)
 	if err != nil {
 		return nil, fmt.Errorf("can't open database: %w", err)
 	}
