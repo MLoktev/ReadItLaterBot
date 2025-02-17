@@ -44,14 +44,14 @@ func (s *Storage) Save(ctx context.Context, p *storage.Page) error {
 
 // PickRandom picks random page from storage
 func (s *Storage) PickRandom(ctx context.Context, userName string) (*storage.Page, error) {
-	q := `SELECT url FROM pages WHERE user_name = ? ORDER BY RANDOM LIMIT 1`
+	q := `SELECT url FROM pages WHERE user_name = ? ORDER BY url LIMIT 1`
 
 	var url string
 
 	err := s.db.QueryRowContext(ctx, q, userName).Scan(&url)
 
 	if err == sql.ErrNoRows {
-		return nil, nil
+		return nil, storage.ErrNoSavedPages
 	}
 
 	if err != nil {

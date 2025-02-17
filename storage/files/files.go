@@ -56,7 +56,7 @@ func (s Storage) PickRandom(_ context.Context, userName string) (page *storage.P
 
 	path := filepath.Join(s.basePath, userName)
 
-	// Надо создавать папку под пользователя только, когда он скидывает ссылку
+	// TODO: Надо создавать папку под пользователя только, когда он скидывает ссылку
 
 	files, err := os.ReadDir(path)
 	if err != nil {
